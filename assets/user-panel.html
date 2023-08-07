@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User-Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="scripts/jsonRequests.js"></script>
+    <script src = "scripts/isoLanguages.js"></script>
+    <script src = "scripts/topicList.js"></script>
+    <script>
+         $(function() {
+            $(function() {
+            $( "#languages" ).autocomplete({
+               source: languages
+            });
+            $( "#topics" ).autocomplete({
+               source: topics
+            });
+         });
+        });
+      </script>
+    <link rel="stylesheet" href="styles/user-panel-style.css">
+    <link rel="stylesheet" href="styles/bookView.css">
+    <link rel="stylesheet" href="styles/general-style.css">
+    <script src="scripts/user-panel-nav-menu.js"></script>
+    <script src="scripts/locationHandler.js"></script>
+    <script src="scripts/getFilters.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="scripts/login.js"></script>
+    <meta name="google-signin-client_id" content="582910134035-ork4qn6r5u724n516a1j0kjh35vlfofq.apps.googleusercontent.com">
+    
+
+
+      
+    <link href = "http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel = "stylesheet">
+</head>
+<body onload="onLoadGoogleAuthApi(init)">
+
+<div id="sidePanel" class="side">
+    <div id="profileImage" onclick="myRedirect()"></div>
+    <a href="#"><i class="fas fa-plus" onclick="return createPopup('submitBookForm.html')"></i></a>
+    <a href="#"><i class="fas fa-chart-bar" onclick="return createPopup('getStatisticsForm.html')"></i></a>
+    <a href="#"><i class="fas fa-map-marker-alt" onclick="getUserGeoLocation()" id="location-id"></i></a>
+    <a href="#" onclick="signOut()"><i class="fas fa-sign-out-alt"></i></a>
+</div>
+
+<div id="header">
+    <a id="sidePanelOpenButton" style="padding: 0.2em;font-size: 2em" onclick="switchNav()"><i id="sidePanelButton" class="fas fa-arrow-circle-right"></i></a>
+    <a id="logo" href="index.html">BooX</a>
+     <input id="search-bar" type="text" placeholder="Search books" oninput="searchWithFilters()">
+     <div></div>
+     <div><a id="filterLabel" onclick="switchFilters()">Show Filters</a></div>
+     <div id="filterContainer">
+            <div id="filterDistance"><p id="distanceLabel">Max Distance:</p><input type="range" oninput="updateDistanceFilter()" id="distance" min="0" max="500", value="0"> </div>
+            <!-- <div id="filterExchangeWith"><p>Exchange with:</p><input type="text" id="exchange"></div> -->
+            <div id="filterTopics"><p>Topic:</p><input type="text" id="topics" oninput="searchWithFilters()"></div>
+            <div id="filterLanguage"><p>Language:</p><input type="text" id="languages" oninput="searchWithFilters()"></div>
+     </div>
+</div>
+
+
+<div id="main">
+
+    <div class="bookViewContainer">
+        <div class="bookViewImage">
+
+        </div>
+        <div class="bookViewInfo">
+            <p class="bookViewTitle">Dummy Title Here</p>
+            <p class="bookViewAuthor">Dummy Author Here</p>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+
+        <div id="snackbar">
+                Test
+            <a href="#" onclick = "closeSnack()"><h4>Close</h4></a>
+            </div>
+
+    <div id="copyright">
+        <p><i class="far fa-copyright"></i> Manoliu Victor, Paius Emanuel</p>
+    </div>
+    <div id="about">
+        <a class="button" href="devs.html">Meet the Developers</a>
+    </div>
+</div>
+
+</body>
+</html>
